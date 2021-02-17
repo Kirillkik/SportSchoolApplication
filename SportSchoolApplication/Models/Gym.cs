@@ -6,6 +6,11 @@ namespace SportSchoolApplication.Models
 {
     public class Gym
     {
+        public Gym()
+        {
+            timeTables = new HashSet<TimeTable>();
+        }
+
         [Required]
         [HiddenInput]
         public int Id { get; set; }
@@ -15,5 +20,6 @@ namespace SportSchoolApplication.Models
         public string Number { get; set; }
 
         public virtual ICollection<ApplicationUser> Users { get; set; }
+        public ICollection<TimeTable> timeTables { get; set; }
     }
 }

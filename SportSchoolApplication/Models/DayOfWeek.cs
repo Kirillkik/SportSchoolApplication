@@ -9,10 +9,17 @@ namespace SportSchoolApplication.Models
 {
     public class DayOfWeek
     {
+        public DayOfWeek()
+        {
+            timeTables = new HashSet<TimeTable>();
+        }
+
         [Required]
         [HiddenInput]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public ICollection<TimeTable> timeTables { get; set; }
     }
 }

@@ -10,7 +10,6 @@ using SportSchoolApplication.Models;
 
 namespace SportSchoolApplication.Controllers
 {
-    [Authorize(Roles ="Admin,Coach")]
     public class TimeTablesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,7 +17,8 @@ namespace SportSchoolApplication.Controllers
         // GET: TimeTables
         public ActionResult Index()
         {
-            return View(db.TimeTables.ToList());
+            var timeTables = db.TimeTables.Include(t => t.Coach).Include(t => t.DayOfWeek).Include(t => t.Gym);
+            return View(timeTables.ToList());
         }
 
         // GET: TimeTables/Details/5
@@ -39,6 +39,9 @@ namespace SportSchoolApplication.Controllers
         // GET: TimeTables/Create
         public ActionResult Create()
         {
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.DayOfWeekId = new SelectList(db.DaysOfWeek, "Id", "Name");
+            ViewBag.GymId = new SelectList(db.Gyms, "Id", "Address");
             return View();
         }
 
@@ -47,7 +50,7 @@ namespace SportSchoolApplication.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Id_Coach,Id_Gym,Id_DayOfWeek,Time_From,Duration")] TimeTable timeTable)
+        public ActionResult Create([Bind(Include = "Id,CoachId,GymId,DayOfWeekId,Time_From,Duration")] TimeTable timeTable)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +59,9 @@ namespace SportSchoolApplication.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email", timeTable.CoachId);
+            ViewBag.DayOfWeekId = new SelectList(db.DaysOfWeek, "Id", "Name", timeTable.DayOfWeekId);
+            ViewBag.GymId = new SelectList(db.Gyms, "Id", "Address", timeTable.GymId);
             return View(timeTable);
         }
 
@@ -71,6 +77,9 @@ namespace SportSchoolApplication.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email", timeTable.CoachId);
+            ViewBag.DayOfWeekId = new SelectList(db.DaysOfWeek, "Id", "Name", timeTable.DayOfWeekId);
+            ViewBag.GymId = new SelectList(db.Gyms, "Id", "Address", timeTable.GymId);
             return View(timeTable);
         }
 
@@ -79,7 +88,7 @@ namespace SportSchoolApplication.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Id_Coach,Id_Gym,Id_DayOfWeek,Time_From,Duration")] TimeTable timeTable)
+        public ActionResult Edit([Bind(Include = "Id,CoachId,GymId,DayOfWeekId,Time_From,Duration")] TimeTable timeTable)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +96,9 @@ namespace SportSchoolApplication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email", timeTable.CoachId);
+            ViewBag.DayOfWeekId = new SelectList(db.DaysOfWeek, "Id", "Name", timeTable.DayOfWeekId);
+            ViewBag.GymId = new SelectList(db.Gyms, "Id", "Address", timeTable.GymId);
             return View(timeTable);
         }
 

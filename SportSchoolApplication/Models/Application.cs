@@ -13,7 +13,7 @@ namespace SportSchoolApplication.Models
         [HiddenInput]
         public int Id { get; set; }
         [Required]
-        public int Id_Coach { get; set; }
+        public string CoachId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
@@ -24,5 +24,7 @@ namespace SportSchoolApplication.Models
         public string Dicription { get; set; }
         [Required]
         public string Contacts { get; set; }
+        public virtual ApplicationUser Coach { get; set; }
+
     }
 }

@@ -15,14 +15,13 @@ namespace SportSchoolApplication.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Applications
-        [Authorize(Roles = "Admin,Coach")]
         public ActionResult Index()
         {
-            return View(db.Applications.ToList());
+            var applications = db.Applications.Include(a => a.Coach);
+            return View(applications.ToList());
         }
 
         // GET: Applications/Details/5
-        [Authorize(Roles = "Admin,Coach")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,6 +39,7 @@ namespace SportSchoolApplication.Controllers
         // GET: Applications/Create
         public ActionResult Create()
         {
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "UserName");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace SportSchoolApplication.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Id_Coach,Name,Surname,Patronymic,Dicription,Contacts")] Application application)
+        public ActionResult Create([Bind(Include = "Id,CoachId,Name,Surname,Patronymic,Dicription,Contacts")] Application application)
         {
             if (ModelState.IsValid)
             {
@@ -57,11 +57,11 @@ namespace SportSchoolApplication.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email", application.CoachId);
             return View(application);
         }
 
         // GET: Applications/Edit/5
-        [Authorize(Roles = "Admin,Coach")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,6 +73,7 @@ namespace SportSchoolApplication.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email", application.CoachId);
             return View(application);
         }
 
@@ -81,8 +82,7 @@ namespace SportSchoolApplication.Controllers
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Coach")]
-        public ActionResult Edit([Bind(Include = "Id,Id_Coach,Name,Surname,Patronymic,Dicription,Contacts")] Application application)
+        public ActionResult Edit([Bind(Include = "Id,CoachId,Name,Surname,Patronymic,Dicription,Contacts")] Application application)
         {
             if (ModelState.IsValid)
             {
@@ -90,11 +90,11 @@ namespace SportSchoolApplication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email", application.CoachId);
             return View(application);
         }
 
         // GET: Applications/Delete/5
-        [Authorize(Roles = "Admin,Coach")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -112,7 +112,6 @@ namespace SportSchoolApplication.Controllers
         // POST: Applications/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Coach")]
         public ActionResult DeleteConfirmed(int id)
         {
             Application application = db.Applications.Find(id);

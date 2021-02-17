@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Id_Coach)
+            @Html.DisplayNameFor(model => model.Coach.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id_Gym)
+            @Html.DisplayNameFor(model => model.DayOfWeek.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id_DayOfWeek)
+            @Html.DisplayNameFor(model => model.Gym.Address)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Time_From)
@@ -32,13 +32,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_Coach)
+            @Html.DisplayFor(modelItem => item.Coach.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_Gym)
+            @Html.DisplayFor(modelItem => item.DayOfWeek.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Id_DayOfWeek)
+            @Html.DisplayFor(modelItem => item.Gym.Address)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Time_From)

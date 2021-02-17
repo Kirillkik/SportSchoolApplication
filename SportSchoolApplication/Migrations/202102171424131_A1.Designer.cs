@@ -7,13 +7,13 @@ namespace SportSchoolApplication.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class DefaultConnection : IMigrationMetadata
+    public sealed partial class A1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DefaultConnection));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(A1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202102101230338_DefaultConnection"; }
+            get { return "202102171424131_A1"; }
         }
         
         string IMigrationMetadata.Source

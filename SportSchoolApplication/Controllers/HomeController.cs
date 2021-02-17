@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SportSchoolApplication.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace SportSchoolApplication.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         #region Просто отображение
         public ActionResult Index()
         {
@@ -16,7 +18,7 @@ namespace SportSchoolApplication.Controllers
 
         public ActionResult AboutCompetition()
         {
-            return View();
+            return View(db.AboutCompetitions.OrderBy(x => x.DateFrom));
         }
         public ActionResult FPRInFace()
         {
@@ -24,7 +26,7 @@ namespace SportSchoolApplication.Controllers
         }
         public ActionResult Gallery()
         {
-            return View();
+            return View(db.Galleries.OrderBy(x => x.Name));
         }
         public ActionResult Records()
         {

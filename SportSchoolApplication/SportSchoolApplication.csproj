@@ -167,9 +167,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AboutCompetitionsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationsController.cs" />
     <Compile Include="Controllers\EditUsersRolesController.cs" />
+    <Compile Include="Controllers\GalleriesController.cs" />
     <Compile Include="Controllers\GymsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -182,9 +184,9 @@
     <Compile Include="Migrations\202102100857594_InitialCreate.Designer.cs">
       <DependentUpon>202102100857594_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102101230338_DefaultConnection.cs" />
-    <Compile Include="Migrations\202102101230338_DefaultConnection.Designer.cs">
-      <DependentUpon>202102101230338_DefaultConnection.cs</DependentUpon>
+    <Compile Include="Migrations\202102171424131_A1.cs" />
+    <Compile Include="Migrations\202102171424131_A1.Designer.cs">
+      <DependentUpon>202102171424131_A1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -193,6 +195,7 @@
     <Compile Include="Models\ApplicationRoleManager.cs" />
     <Compile Include="Models\DayOfWeek.cs" />
     <Compile Include="Models\Gym.cs" />
+    <Compile Include="Models\HomeModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RolesUsers.cs" />
@@ -205,10 +208,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\StyleSheet1.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Background.jpg" />
+    <Content Include="Images\Background2.jpg" />
+    <Content Include="Images\Index\Benchpress.jpg" />
+    <Content Include="Images\Index\Deadlift.jpg" />
+    <Content Include="Images\Index\Squad.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -255,33 +264,45 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\AboutCompetition.cshtml" />
-    <Content Include="Views\Home\Gallery.cshtml" />
     <Content Include="Views\Home\FPRInFace.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Applications\Create.cshtml" />
-    <Content Include="Views\Applications\Delete.cshtml" />
-    <Content Include="Views\Applications\Details.cshtml" />
-    <Content Include="Views\Applications\Edit.cshtml" />
-    <Content Include="Views\Applications\Index.cshtml" />
+    <Content Include="Views\EditUserRoles\Index.cshtml" />
+    <Content Include="Views\EditUserRoles\Edit.cshtml" />
     <Content Include="Views\Gyms\Create.cshtml" />
     <Content Include="Views\Gyms\Delete.cshtml" />
     <Content Include="Views\Gyms\Details.cshtml" />
     <Content Include="Views\Gyms\Edit.cshtml" />
     <Content Include="Views\Gyms\Index.cshtml" />
+    <Content Include="Views\Applications\Create.cshtml" />
+    <Content Include="Views\Applications\Delete.cshtml" />
+    <Content Include="Views\Applications\Details.cshtml" />
+    <Content Include="Views\Applications\Edit.cshtml" />
+    <Content Include="Views\Applications\Index.cshtml" />
     <Content Include="Views\TimeTables\Create.cshtml" />
     <Content Include="Views\TimeTables\Delete.cshtml" />
     <Content Include="Views\TimeTables\Details.cshtml" />
     <Content Include="Views\TimeTables\Edit.cshtml" />
     <Content Include="Views\TimeTables\Index.cshtml" />
-    <Content Include="Views\EditUserRoles\Index.cshtml" />
-    <Content Include="Views\EditUserRoles\Edit.cshtml" />
+    <Content Include="Views\AboutCompetitions\Create.cshtml" />
+    <Content Include="Views\AboutCompetitions\Delete.cshtml" />
+    <Content Include="Views\AboutCompetitions\Details.cshtml" />
+    <Content Include="Views\AboutCompetitions\Edit.cshtml" />
+    <Content Include="Views\AboutCompetitions\Index.cshtml" />
+    <Content Include="Views\Home\AboutCompetition.cshtml" />
+    <Content Include="Views\Galleries\Create.cshtml" />
+    <Content Include="Views\Galleries\Delete.cshtml" />
+    <Content Include="Views\Galleries\Details.cshtml" />
+    <Content Include="Views\Galleries\Edit.cshtml" />
+    <Content Include="Views\Galleries\Index.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Files\" />
+    <Folder Include="Images\Galeries\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -300,8 +321,8 @@
     <EmbeddedResource Include="Migrations\202102100857594_InitialCreate.resx">
       <DependentUpon>202102100857594_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102101230338_DefaultConnection.resx">
-      <DependentUpon>202102101230338_DefaultConnection.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102171424131_A1.resx">
+      <DependentUpon>202102171424131_A1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
