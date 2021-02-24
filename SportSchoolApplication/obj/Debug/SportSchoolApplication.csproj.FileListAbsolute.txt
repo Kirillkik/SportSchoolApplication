@@ -117,4 +117,4 @@ C:\Users\Aquarius\Desktop\SportSchoolApplication\SportSchoolApplication\obj\Debu
 C:\Users\Aquarius\Desktop\SportSchoolApplication\SportSchoolApplication\obj\Debug\SportSchoolApplication.pdb
 C:\Users\Aquarius\Desktop\SportSchoolApplication\SportSchoolApplication\obj\Debug\SportSchoolApplication.Migrations.InitialCreate.resources
 C:\Users\Aquarius\Desktop\SportSchoolApplication\SportSchoolApplication\obj\Debug\SportSchoolApplication.csproj.GenerateResource.cache
-C:\Users\Aquarius\Desktop\SportSchoolApplication\SportSchoolApplication\obj\Debug\SportSchoolApplication.Migrations.A1.resources
+C:\Users\Aquarius\Desktop\SportSchoolApplication\SportSchoolApplication\obj\Debug\SportSchoolApplication.Migrations.a1.resources

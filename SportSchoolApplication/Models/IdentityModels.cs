@@ -37,6 +37,11 @@ namespace SportSchoolApplication.Models
         public DbSet<AboutCompetition> AboutCompetitions { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Gallery> Galleries { get; set; }
+        public DbSet<FPRInFace> FPRInFaces { get; set; }
+        public DbSet<Type> Types { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Sex> Sexes { get; set; }
+        public DbSet<Record> Records { get; set; }
 
         public ApplicationDbContext()
         : base("DefaultConnection", throwIfV1Schema: false)

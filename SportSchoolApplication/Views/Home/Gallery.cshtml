@@ -9,18 +9,44 @@
 
 <body>
     <div class="container">
-        @for (int i = 0; i < Massiv.Count; i++)
+
+        @for (int i = 0; i <= Massiv.Count/3; i++)
         {
-            <div class="row">
-                <div class="col-md-4 mb-2">
-                    <a href="~/Photos/Index/@i">
-                        <h2>@Massiv[i].Name</h2>
-                        <img src="@Massiv[i].PhotoPath" width="200" height="200" />
-                    </a>
-                </div>
+        <div class="row">
+            @if(i < Massiv.Count)
+            {
+            <div class="col-md-4 mb-2">
+                <a href="~/Home/Photos/@i">
+                    <h2>@Massiv[i].Name</h2>
+                    <img src="@Massiv[i].PhotoPath" width="300" height="300" />
+                </a>
             </div>
+            }
+            @if(i+1 < Massiv.Count)
+            {
+            <div class="col-md-4 mb-2">
+                <a href="~/Home/Photos/@(i+1)">
+                    <h2>@Massiv[i+1].Name</h2>
+                    <img src="@Massiv[i+1].PhotoPath" width="300" height="300" />
+                </a>
+            </div>
+            }
+            @if(i+2 < Massiv.Count)
+            {
+            <div class="col-md-4 mb-2">
+                <a href="~/Home/Photos/@(i+2)">
+                    <h2>@Massiv[i+2].Name</h2>
+                    <img src="@Massiv[i+2].PhotoPath" width="300" height="300" />
+                </a>
+            </div>
+            }
+        </div>
+        <br />
         }
+
     </div>
+
+
 </body>
 
    

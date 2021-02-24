@@ -171,10 +171,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationsController.cs" />
     <Compile Include="Controllers\EditUsersRolesController.cs" />
+    <Compile Include="Controllers\FPRInFacesController.cs" />
     <Compile Include="Controllers\GalleriesController.cs" />
     <Compile Include="Controllers\GymsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotosController.cs" />
+    <Compile Include="Controllers\RecordsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TimeTablesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -184,9 +187,9 @@
     <Compile Include="Migrations\202102100857594_InitialCreate.Designer.cs">
       <DependentUpon>202102100857594_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202102171424131_A1.cs" />
-    <Compile Include="Migrations\202102171424131_A1.Designer.cs">
-      <DependentUpon>202102171424131_A1.cs</DependentUpon>
+    <Compile Include="Migrations\202102241331093_a1.cs" />
+    <Compile Include="Migrations\202102241331093_a1.Designer.cs">
+      <DependentUpon>202102241331093_a1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -214,7 +217,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\Background.jpg" />
-    <Content Include="Images\Background2.jpg" />
     <Content Include="Images\Index\Benchpress.jpg" />
     <Content Include="Images\Index\Deadlift.jpg" />
     <Content Include="Images\Index\Squad.png" />
@@ -264,7 +266,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\FPRInFace.cshtml" />
+    <Content Include="Views\Home\FPRInFaces.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
@@ -298,11 +300,32 @@
     <Content Include="Views\Galleries\Edit.cshtml" />
     <Content Include="Views\Galleries\Index.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Photos\Create.cshtml" />
+    <Content Include="Views\Photos\Delete.cshtml" />
+    <Content Include="Views\Photos\Details.cshtml" />
+    <Content Include="Views\Photos\Edit.cshtml" />
+    <Content Include="Views\Photos\Index.cshtml" />
+    <Content Include="Views\Home\Photos.cshtml" />
+    <Content Include="Views\Home\Photo.cshtml" />
+    <Content Include="Views\FPRInFaces\Create.cshtml" />
+    <Content Include="Views\FPRInFaces\Delete.cshtml" />
+    <Content Include="Views\FPRInFaces\Details.cshtml" />
+    <Content Include="Views\FPRInFaces\Edit.cshtml" />
+    <Content Include="Views\FPRInFaces\Index.cshtml" />
+    <Content Include="Views\Home\FPRInFace.cshtml" />
+    <Content Include="Views\Records\Create.cshtml" />
+    <Content Include="Views\Records\Delete.cshtml" />
+    <Content Include="Views\Records\Details.cshtml" />
+    <Content Include="Views\Records\Edit.cshtml" />
+    <Content Include="Views\Records\Index.cshtml" />
+    <Content Include="Views\Home\TimeTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Files\" />
+    <Folder Include="Images\FPRInFace\" />
     <Folder Include="Images\Galeries\" />
+    <Folder Include="Images\Photos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -321,8 +344,8 @@
     <EmbeddedResource Include="Migrations\202102100857594_InitialCreate.resx">
       <DependentUpon>202102100857594_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102171424131_A1.resx">
-      <DependentUpon>202102171424131_A1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202102241331093_a1.resx">
+      <DependentUpon>202102241331093_a1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

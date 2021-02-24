@@ -1,1 +1,46 @@
-﻿
+﻿@model SportSchoolApplication.Models.FPRInFace
+
+@{
+    ViewBag.Title = "FPRInFace";
+}
+
+<h2>FPRInFace</h2>
+
+<div>
+    <h4>FPRInFace</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Biography)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Biography)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Achivments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Achivments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoPath)
+        </dt>
+
+        <dd>
+            <img src="@Model.PhotoPath" width="700" height="700" />
+        </dd>
+
+    </dl>
+</div>

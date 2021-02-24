@@ -33,8 +33,14 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Об Организации<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Галерея", "Gallery", "Home")</li>
-                            <li>@Html.ActionLink("Федерация в лицах", "FPRInFace", "Home")</li>
                             <li>@Html.ActionLink("Рекорды", "Records", "Home")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Федерация в лицах<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Тренеры", "FPRInFaces/0", "Home")</li>
+                            <li>@Html.ActionLink("Спортсмены", "FPRInFaces/1", "Home")</li>
                         </ul>
                     </li>
                     @if (User.IsInRole("Coach"))
@@ -42,7 +48,7 @@
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Дополнительно<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Расписание", "TimeTable", "Home")</li>
+                                <li>@Html.ActionLink("Расписание", "Index", "TimeTables")</li>
                                 <li>@Html.ActionLink("Контактная информация", "Contact", "Home")</li>
                                 <li>@Html.ActionLink("Заявки", "Index", "Applications")</li>
                             </ul>
