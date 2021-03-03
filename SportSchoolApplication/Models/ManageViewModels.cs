@@ -12,6 +12,8 @@ namespace SportSchoolApplication.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public string FIO { get; set; }
+        public string Phone { get; set; }
     }
 
     public class ManageLoginsViewModel
@@ -56,6 +58,22 @@ namespace SportSchoolApplication.Models
         [Display(Name = "Подтверждение нового пароля")]
         [Compare("NewPassword", ErrorMessage = "Новый пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class ChangeUserNameViewModel
+    {
+        [Required]
+        [StringLength(100, ErrorMessage = "Значение {0} должно содержать символов не менее: {2}.", MinimumLength = 6)]
+        [Display(Name = "Новое Имя")]
+        public string NewUserName { get; set; }
+    }
+
+    public class ChangePhoneViewModel
+    {
+        [Required]
+        [Phone]
+        [Display(Name = "Номер телефона")]
+        public string Number { get; set; }
     }
 
     public class AddPhoneNumberViewModel

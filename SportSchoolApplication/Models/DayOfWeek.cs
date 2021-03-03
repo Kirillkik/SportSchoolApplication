@@ -18,6 +18,7 @@ namespace SportSchoolApplication.Models
         [HiddenInput]
         public int Id { get; set; }
         [Required]
+        [Display (Name = "День недели")]
         public string Name { get; set; }
 
         public ICollection<TimeTable> timeTables { get; set; }

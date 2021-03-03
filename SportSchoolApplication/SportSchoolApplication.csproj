@@ -191,6 +191,14 @@
     <Compile Include="Migrations\202102241331093_a1.Designer.cs">
       <DependentUpon>202102241331093_a1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103031104366_a11.cs" />
+    <Compile Include="Migrations\202103031104366_a11.Designer.cs">
+      <DependentUpon>202103031104366_a11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103031220458_a12.cs" />
+    <Compile Include="Migrations\202103031220458_a12.Designer.cs">
+      <DependentUpon>202103031220458_a12.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Application.cs" />
@@ -270,7 +278,6 @@
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\EditUserRoles\Index.cshtml" />
     <Content Include="Views\EditUserRoles\Edit.cshtml" />
     <Content Include="Views\Gyms\Create.cshtml" />
@@ -319,6 +326,10 @@
     <Content Include="Views\Records\Edit.cshtml" />
     <Content Include="Views\Records\Index.cshtml" />
     <Content Include="Views\Home\TimeTable.cshtml" />
+    <Content Include="Views\Manage\ChangeUserName.cshtml" />
+    <Content Include="Views\Manage\ChangePhone.cshtml" />
+    <Content Include="Views\Home\ContactSportsmans.cshtml" />
+    <Content Include="Views\Home\ContactCoaches.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,6 +357,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102241331093_a1.resx">
       <DependentUpon>202102241331093_a1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103031104366_a11.resx">
+      <DependentUpon>202103031104366_a11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103031220458_a12.resx">
+      <DependentUpon>202103031220458_a12.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

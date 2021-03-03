@@ -15,6 +15,7 @@ namespace SportSchoolApplication.Models
         [HiddenInput]
         public int Id { get; set; }
         [Required]
+        [Display (Name = "Адрес зала")]
         public string Address { get; set; }
         [Required]
         public string Number { get; set; }

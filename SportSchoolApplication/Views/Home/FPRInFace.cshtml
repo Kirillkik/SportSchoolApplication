@@ -1,15 +1,61 @@
 ﻿@model SportSchoolApplication.Models.FPRInFace
 
 @{
-    ViewBag.Title = "FPRInFace";
+    ViewBag.Title = "Федерация в лицах";
 }
 
-<h2>FPRInFace</h2>
+<h2>Федерация в лицах</h2>
 
-<div>
-    <h4>FPRInFace</h4>
-    <hr />
-    <dl class="dl-horizontal">
+<body>
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6 mb-2">
+                <dl>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FIO)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.FIO)
+                        <hr />
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Biography)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Biography)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-md-6 mb-2">
+                <img src="@Model.PhotoPath" width="300" height="300" />
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+
+            <div class="col-md-12 mb-2">
+                <dl>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Achivments)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Achivments)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+
+    @*@<dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.FIO)
         </dt>
@@ -42,5 +88,4 @@
             <img src="@Model.PhotoPath" width="700" height="700" />
         </dd>
 
-    </dl>
-</div>
+    </dl>*@

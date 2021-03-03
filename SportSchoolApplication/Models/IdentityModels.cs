@@ -10,6 +10,9 @@ namespace SportSchoolApplication.Models
     // В профиль пользователя можно добавить дополнительные данные, если указать больше свойств для класса ApplicationUser. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=317594.
     public class ApplicationUser : IdentityUser
     {
+        public string FIO { get; set; }
+        public string Phone { get; set; }
+
         public ApplicationUser()
         {
             timeTables = new HashSet<TimeTable>();
@@ -52,7 +55,5 @@ namespace SportSchoolApplication.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<SportSchoolApplication.Models.ApplicationRole> IdentityRoles { get; set; }
     }
 }

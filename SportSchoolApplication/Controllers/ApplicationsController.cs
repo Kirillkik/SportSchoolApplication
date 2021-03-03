@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using SportSchoolApplication.Models;
 
 namespace SportSchoolApplication.Controllers
@@ -17,7 +19,8 @@ namespace SportSchoolApplication.Controllers
         // GET: Applications
         public ActionResult Index()
         {
-            var applications = db.Applications.Include(a => a.Coach);
+            var UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            var applications = db.Applications.Include(a => a.Coach).Where(x => x.CoachId == UserId);
             return View(applications.ToList());
         }
 
@@ -36,10 +39,16 @@ namespace SportSchoolApplication.Controllers
             return View(application);
         }
 
+        [Authorize (Roles = "User")]
         // GET: Applications/Create
         public ActionResult Create()
         {
-            ViewBag.CoachId = new SelectList(db.Users, "Id", "UserName");
+            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            string roleName = "Coach";
+            var role = roleManager.Roles.Single(r => r.Name == roleName);
+
+            ViewBag.CoachId = new SelectList(userManager.Users.Where(u => u.Roles.Any(r => r.RoleId == role.Id)).ToList(), "Id", "FIO");
             return View();
         }
 
@@ -54,7 +63,7 @@ namespace SportSchoolApplication.Controllers
             {
                 db.Applications.Add(application);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Home/Index");
             }
 
             ViewBag.CoachId = new SelectList(db.Users, "Id", "Email", application.CoachId);

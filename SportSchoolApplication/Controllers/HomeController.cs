@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -45,7 +46,7 @@ namespace SportSchoolApplication.Controllers
             return View(PhotoFromGallery);
         }
 
-        public ActionResult Photo (int Id)
+        public ActionResult Photo(int Id)
         {
             return View(db.Photos.ToList().FirstOrDefault(x => x.Id == Id));
         }
@@ -60,22 +61,51 @@ namespace SportSchoolApplication.Controllers
         }
         #endregion
 
-        [Authorize(Roles ="Coach")]
-        public ActionResult Contact()
+        [Authorize(Roles = "Coach,Admin")]
+        public ActionResult ContactSportsmans()
         {
-            return View();
+            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+
+            string roleName = "Sportsman";
+            var role = roleManager.Roles.Single(r => r.Name == roleName);
+
+            var SportsmanList = userManager.Users.Where(u => u.Roles.Any(r => r.RoleId == role.Id)).ToList();
+
+            return View(SportsmanList);
         }
 
-        public ActionResult TimeTable()
+        [Authorize(Roles = "Sportsman,Admin")]
+        public ActionResult ContactCoaches()
         {
             var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
 
             string roleName = "Coach";
-            var role =  roleManager.Roles.Single(r => r.Name == roleName);
+            var role = roleManager.Roles.Single(r => r.Name == roleName);
+
+            var CoachList = userManager.Users.Where(u => u.Roles.Any(r => r.RoleId == role.Id)).ToList();
+
+            return View(CoachList);
+        }
+
+        public ActionResult TimeTable(string Id)
+        {
+            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+
+            string roleName = "Coach";
+            var role = roleManager.Roles.Single(r => r.Name == roleName);
 
             ViewBag.CoachList = userManager.Users.Where(u => u.Roles.Any(r => r.RoleId == role.Id)).ToList();
-            return View(db.TimeTables.ToList());
+
+            if (Id != null)
+            {
+                return View(db.TimeTables.Where(x => x.CoachId == Id).ToList());
+            }
+            else
+                return View(new List<TimeTable>());
         }
+
     }
 }

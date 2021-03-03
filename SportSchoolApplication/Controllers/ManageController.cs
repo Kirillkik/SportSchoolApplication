@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -13,6 +14,8 @@ namespace SportSchoolApplication.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -61,16 +64,21 @@ namespace SportSchoolApplication.Controllers
                 : message == ManageMessageId.Error ? "Произошла ошибка."
                 : message == ManageMessageId.AddPhoneSuccess ? "Ваш номер телефона добавлен."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Ваш номер телефона удален."
+                : message == ManageMessageId.ChangeUserNameSuccess ? "Ваше имя изменено"
+                : message == ManageMessageId.ChangePhoneSuccess ? "Ваш номер изменен"
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var _user = await db.Users.FirstOrDefaultAsync(x => x.Id == userId);
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                FIO = _user.FIO,
+                Phone = _user.Phone
             };
             return View(model);
         }
@@ -211,6 +219,56 @@ namespace SportSchoolApplication.Controllers
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
+        }
+
+        public ActionResult ChangeUserName()
+        {
+            return View();
+        }
+
+        // POST: /Manage/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangeUserName(ChangeUserNameViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.FirstOrDefault(x => x.Id == userId);
+                user.FIO = model.NewUserName;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", new { Message = ManageMessageId.ChangeUserNameSuccess });
+            }
+        }
+
+        public ActionResult ChangePhone()
+        {
+            return View();
+        }
+
+        // POST: /Manage/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePhone(ChangePhoneViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var userId = User.Identity.GetUserId();
+                var user = db.Users.FirstOrDefault(x => x.Id == userId);
+                user.Phone = model.Number;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePhoneSuccess });
+            }
         }
 
         //
@@ -381,7 +439,9 @@ namespace SportSchoolApplication.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
-            Error
+            Error,
+            ChangeUserNameSuccess,
+            ChangePhoneSuccess
         }
 
 #endregion

@@ -16,6 +16,7 @@ namespace SportSchoolApplication.Models
         [Required]
         public int DayOfWeekId { get; set; }
         [Required]
+        [Display (Name = "Время начала")]
         public DateTime Time_From { get; set; }
         [Required]
         public DateTime Duration { get; set; }

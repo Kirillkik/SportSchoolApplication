@@ -49,7 +49,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Дополнительно<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Расписание", "Index", "TimeTables")</li>
-                                <li>@Html.ActionLink("Контактная информация", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Контактная информация спортсменов", "ContactSportsmans", "Home")</li>
                                 <li>@Html.ActionLink("Заявки", "Index", "Applications")</li>
                             </ul>
                         </li>
@@ -61,7 +61,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">Дополнительно<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Расписание", "TimeTable", "Home")</li>
-                                <li>@Html.ActionLink("Контактная информация", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Контактная информация тренеров", "ContactCoaches", "Home")</li>
                             </ul>
                         </li>
                     }
@@ -73,7 +73,8 @@
                                 <li>@Html.ActionLink("Расписание", "Index", "TimeTables")</li>
                                 <li>@Html.ActionLink("Заявки", "Index", "Applications")</li>
                                 <li>@Html.ActionLink("Залы", "Index", "Gyms")</li>
-                                <li>@Html.ActionLink("Контактная информация", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Контактная информация спортсменов", "ContactSportsmans", "Home")</li>
+                                <li>@Html.ActionLink("Контактная информация тренеров", "ContactCoaches", "Home")</li>
                                 <li>@Html.ActionLink("Добавление Ролей", "Index", "Roles")</li>
                                 <li>@Html.ActionLink("Выдача Ролей", "Index", "EditUserRoles")</li>
                             </ul>

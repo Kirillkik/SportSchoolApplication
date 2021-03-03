@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using SportSchoolApplication.Models;
 
 namespace SportSchoolApplication.Controllers
@@ -17,7 +18,8 @@ namespace SportSchoolApplication.Controllers
         // GET: TimeTables
         public ActionResult Index()
         {
-            var timeTables = db.TimeTables.Include(t => t.Coach).Include(t => t.DayOfWeek).Include(t => t.Gym);
+            var UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            var timeTables = db.TimeTables.Include(t => t.Coach).Include(t => t.DayOfWeek).Include(t => t.Gym).Where(x => x.CoachId == UserId);
             return View(timeTables.ToList());
         }
 

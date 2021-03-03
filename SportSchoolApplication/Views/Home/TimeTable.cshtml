@@ -7,24 +7,28 @@
 
 <h2>TimeTable</h2>
 
-<div class="form-group">
-    <label class="control-label col-md-2">Пол</label>
-    <div class="col-md-10">
-        <select class="form-control" id="CoachId" name="CoachId">
-            <option value="0">--не-выбрано--</option>
-            @foreach (var item in coaches)
-            {
-                <option value="@item.Id">@item.UserName</option>
-            }
-        </select>
+
+
+@using (Html.BeginForm("TimeTable", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <label class="control-label col-md-2">Пол</label>
+        <div class="col-md-10">
+            <select class="form-control" name="Id">
+                <option value="0" name="Id">--не-выбрано--</option>
+                @foreach (var item in coaches)
+                {
+                    <option name="Id" value="@item.Id">@item.UserName</option>
+                }
+            </select>
+            <p ><input type="submit" value="Выбрать"/></p>
+        </div>
     </div>
-</div>
+   
+}
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Coach.Email)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.DayOfWeek.Name)
         </th>
@@ -35,17 +39,14 @@
             @Html.DisplayNameFor(model => model.Time_From)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Duration)
+            <p>Время окончания</p>
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr id="TimeTable" name="TimeTable" class="d-none">
-            <td>
-                @Html.DisplayFor(modelItem => item.Coach.Email)
-            </td>
+        <tr id="TimeTable" name="TimeTable" value="@item.Id" data-Coach="@item.Id">
             <td>
                 @Html.DisplayFor(modelItem => item.DayOfWeek.Name)
             </td>
@@ -53,23 +54,12 @@
                 @Html.DisplayFor(modelItem => item.Gym.Address)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Time_From)
+                @Html.DisplayFor(modelItem => item.Time_From.TimeOfDay)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Duration)
+                <p>@(item.Time_From.TimeOfDay + item.Duration.TimeOfDay)</p>
             </td>
         </tr>
     }
 
 </table>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script>
-    $('#CoachId').on("change", function () {
-        $('#TimeTable').addClass('d-none');
-        $(`#CategoryId option[data-isMan="${$(this).val()}"]`).removeClass('d-none');
-    });
-</script>

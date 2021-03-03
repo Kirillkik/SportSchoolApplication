@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Coach.Email)
+            <p>Имя тренера</p>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DayOfWeek.Name)
@@ -24,7 +24,7 @@
             @Html.DisplayNameFor(model => model.Time_From)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Duration)
+            <p>Продолжительность</p>
         </th>
         <th></th>
     </tr>
@@ -32,7 +32,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Coach.Email)
+            @Html.DisplayFor(modelItem => item.Coach.FIO)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DayOfWeek.Name)
@@ -41,10 +41,10 @@
             @Html.DisplayFor(modelItem => item.Gym.Address)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Time_From)
+            @Html.DisplayFor(modelItem => item.Time_From.TimeOfDay)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Duration)
+            @Html.DisplayFor(modelItem => item.Duration.TimeOfDay)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
