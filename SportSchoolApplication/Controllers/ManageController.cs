@@ -21,6 +21,9 @@ namespace SportSchoolApplication.Controllers
 
         public ManageController()
         {
+            var UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            var roleId = db.Users.Where(x => x.Id == UserId).Include(x => x.Roles).FirstOrDefault().Roles.First().RoleId;
+            ViewBag.Role =db.Roles.Where( y => y.Id == roleId ).First().Name;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
