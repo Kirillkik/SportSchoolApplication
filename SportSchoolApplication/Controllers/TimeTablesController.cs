@@ -18,9 +18,14 @@ namespace SportSchoolApplication.Controllers
         // GET: TimeTables
         public ActionResult Index()
         {
-            var UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            var timeTables = db.TimeTables.Include(t => t.Coach).Include(t => t.DayOfWeek).Include(t => t.Gym).Where(x => x.CoachId == UserId);
-            return View(timeTables.ToList());
+            if (User.IsInRole("Coach"))
+            {
+                var UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                var timeTables = db.TimeTables.Include(t => t.Coach).Include(t => t.DayOfWeek).Include(t => t.Gym).Where(x => x.CoachId == UserId);
+                return View(timeTables.ToList());
+            }
+            else
+                return View(db.TimeTables.Include(t => t.Coach).Include(t => t.DayOfWeek).Include(t => t.Gym).ToList());
         }
 
         // GET: TimeTables/Details/5

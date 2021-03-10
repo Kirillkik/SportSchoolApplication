@@ -14,11 +14,13 @@ namespace SportSchoolApplication.Models
         [Required]
         public int GymId { get; set; }
         [Required]
+        
         public int DayOfWeekId { get; set; }
         [Required]
         [Display (Name = "Время начала")]
         public DateTime Time_From { get; set; }
         [Required]
+        [Display(Name = "Продолжительность")]
         public DateTime Duration { get; set; }
 
         public virtual ApplicationUser Coach { get; set; }

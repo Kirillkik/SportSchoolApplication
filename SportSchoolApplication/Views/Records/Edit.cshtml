@@ -1,19 +1,19 @@
 ﻿@model SportSchoolApplication.Models.Record
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Рекорды";
     List<SportSchoolApplication.Models.Category> cl = ViewBag.CategoryList;
     List<SportSchoolApplication.Models.Sex> sexes = ViewBag.SexList;
 }
 
-<h2>Edit</h2>
+<h2>Рекорды</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Record</h4>
+    <h4>Редактировать</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
@@ -114,14 +114,14 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Сохранить" class="btn btn-default" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Назад", "Index")
 </div>
 
 @section Scripts {

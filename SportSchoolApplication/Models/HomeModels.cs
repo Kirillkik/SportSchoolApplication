@@ -55,7 +55,9 @@ namespace SportSchoolApplication.Models
         }
 
         public int Id { get; set; }
+        [Display(Name = "Название")]
         public string Name { get; set; }
+        [Display(Name = "Фотография")]
         public string PhotoPath { get; set; }
         public ICollection<Photo> photos { get; set; }
     }

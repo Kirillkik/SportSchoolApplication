@@ -19,9 +19,14 @@ namespace SportSchoolApplication.Controllers
         // GET: Applications
         public ActionResult Index()
         {
-            var UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
-            var applications = db.Applications.Include(a => a.Coach).Where(x => x.CoachId == UserId);
-            return View(applications.ToList());
+            if (User.IsInRole("Coach"))
+            {
+                var UserId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                var applications = db.Applications.Include(a => a.Coach).Where(x => x.CoachId == UserId);
+                return View(applications.ToList());
+            }
+            else
+                return View(db.Applications.ToList());
         }
 
         // GET: Applications/Details/5

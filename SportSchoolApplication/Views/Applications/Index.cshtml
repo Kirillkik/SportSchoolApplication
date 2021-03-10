@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SportSchoolApplication.Models.Application>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Запись";
 }
 
-<h2>Index</h2>
+<h2>Запись</h2>
 
 <table class="table">
     <tr>
@@ -26,28 +26,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Patronymic)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dicription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Contacts)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patronymic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dicription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contacts)
+            </td>
+            <td>
+                @Html.ActionLink("Детали", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

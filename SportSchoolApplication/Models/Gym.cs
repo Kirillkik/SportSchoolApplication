@@ -18,6 +18,7 @@ namespace SportSchoolApplication.Models
         [Display (Name = "Адрес зала")]
         public string Address { get; set; }
         [Required]
+        [Display(Name = "Номер")]
         public string Number { get; set; }
 
         public virtual ICollection<ApplicationUser> Users { get; set; }
