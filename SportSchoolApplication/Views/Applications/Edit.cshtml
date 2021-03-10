@@ -17,10 +17,10 @@
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CoachId, "CoachId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Coach.FIO, "Тренер", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("CoachId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CoachId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Coach.FIO, "", new { @class = "text-danger" })
             </div>
         </div>
 

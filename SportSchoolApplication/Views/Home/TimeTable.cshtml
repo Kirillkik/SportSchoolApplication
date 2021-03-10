@@ -12,13 +12,13 @@
 @using (Html.BeginForm("TimeTable", "Home", FormMethod.Post))
 {
     <div class="form-group">
-        <label class="control-label col-md-2">Пол</label>
+        <label class="control-label col-md-2">Выбор тренера</label>
         <div class="col-md-10">
             <select class="form-control" name="Id">
                 <option value="0" name="Id">--не-выбрано--</option>
                 @foreach (var item in coaches)
                 {
-                    <option name="Id" value="@item.Id">@item.UserName</option>
+                    <option name="Id" value="@item.Id">@item.FIO</option>
                 }
             </select>
             <p ><input type="submit" value="Выбрать"/></p>

@@ -9,33 +9,33 @@
 <body>
     <div class="container">
 
-        @for (int i = 0; i <= Model.Count() / 3; i++)
+        @for (int i = 0; i < (Model.Count() < 3 ? 1 : Model.Count() / 3); i++)
         {
             <div class="row">
                 @if (i < Model.Count())
                 {
                     <div class="col-md-4 mb-2">
-                        <a href="~/Home/FPRInFace/@Model[i].Id">
-                            <h2>@Model[i].FIO</h2>
-                            <img src="@Model[i].PhotoPath" width="300" height="300" />
+                        <a href="~/Home/FPRInFace/@Model[i*3].Id">
+                            <h2>@Model[i * 3].FIO</h2>
+                            <img src="@Model[i*3].PhotoPath" width="300" height="300" />
                         </a>
                     </div>
                 }
                 @if (i + 1 < Model.Count())
                 {
                     <div class="col-md-4 mb-2">
-                        <a href="~/Home/FPRInFace/@Model[i+1].Id">
-                            <h2>@Model[i+1].FIO</h2>
-                            <img src="@Model[i+1].PhotoPath" width="300" height="300" />
+                        <a href="~/Home/FPRInFace/@Model[i*3+1].Id">
+                            <h2>@Model[i * 3 + 1].FIO</h2>
+                            <img src="@Model[i*3+1].PhotoPath" width="300" height="300" />
                         </a>
                     </div>
                 }
                 @if (i + 2 < Model.Count())
                 {
                     <div class="col-md-4 mb-2">
-                        <a href="~/Home/FPRInFace/@Model[i+2].Id">
-                            <h2>@Model[i+2].FIO</h2>
-                            <img src="@Model[i+2].PhotoPath" width="300" height="300" />
+                        <a href="~/Home/FPRInFace/@Model[i*3+2].Id">
+                            <h2>@Model[i * 3 + 2].FIO</h2>
+                            <img src="@Model[i*3+2].PhotoPath" width="300" height="300" />
                         </a>
                     </div>
                 }

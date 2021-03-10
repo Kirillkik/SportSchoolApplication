@@ -28,7 +28,7 @@ namespace SportSchoolApplication.Models
         public string Place { get; set; }
         [Display(Name = "Подача заявок")]
         public string Description { get; set; }
-        [Display(Name = "Протокол")]
+        [Display(Name = "Протокол/Положение")]
         public string FilePath { get; set; }
     }
 
@@ -121,6 +121,8 @@ namespace SportSchoolApplication.Models
         public DateTime Birthday { get; set; }
         [Display(Name = "Результат")]
         public float Result { get; set; }
+        [Required]
+        [DataType(DataType.DateTime)]
         [Display(Name = "Дата")]
         [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy}")]
         public DateTime Date { get; set; }

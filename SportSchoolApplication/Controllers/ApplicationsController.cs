@@ -71,7 +71,7 @@ namespace SportSchoolApplication.Controllers
                 return Redirect("/Home/Index");
             }
 
-            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email", application.CoachId);
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "FIO", application.CoachId);
             return View(application);
         }
 
@@ -87,7 +87,7 @@ namespace SportSchoolApplication.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email", application.CoachId);
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "FIO", application.CoachId);
             return View(application);
         }
 
@@ -104,7 +104,7 @@ namespace SportSchoolApplication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email", application.CoachId);
+            ViewBag.CoachId = new SelectList(db.Users, "Id", "FIO", application.CoachId);
             return View(application);
         }
 

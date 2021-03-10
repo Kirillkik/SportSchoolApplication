@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using SportSchoolApplication.Models;
 
 namespace SportSchoolApplication.Controllers
@@ -46,7 +47,12 @@ namespace SportSchoolApplication.Controllers
         // GET: TimeTables/Create
         public ActionResult Create()
         {
-            ViewBag.CoachId = new SelectList(db.Users, "Id", "Email");
+            var userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+
+            string roleName = "Coach";
+            var role = roleManager.Roles.Single(r => r.Name == roleName);
+            ViewBag.CoachId = new SelectList(userManager.Users.Where(u => u.Roles.Any(r => r.RoleId == role.Id)).ToList(), "Id", "FIO");
             ViewBag.DayOfWeekId = new SelectList(db.DaysOfWeek, "Id", "Name");
             ViewBag.GymId = new SelectList(db.Gyms, "Id", "Address");
             return View();

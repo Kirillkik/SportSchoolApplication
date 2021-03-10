@@ -59,8 +59,9 @@ namespace SportSchoolApplication.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Id", record.CategoryId);
+            ViewBag.CategoryList = new SelectList(db.Categories, "Id", "Id", record.CategoryId);
             ViewBag.TypeId = new SelectList(db.Types, "Id", "Name", record.TypeId);
+            ViewBag.SexList = new SelectList(db.Sexes, "Id", "Name", record.SexId);
             return View(record);
         }
 
@@ -95,8 +96,9 @@ namespace SportSchoolApplication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Id", record.CategoryId);
+            ViewBag.CategoryList = new SelectList(db.Categories, "Id", "Id", record.CategoryId);
             ViewBag.TypeId = new SelectList(db.Types, "Id", "Name", record.TypeId);
+            ViewBag.SexList = new SelectList(db.Sexes, "Id", "Name", record.SexId);
             return View(record);
         }
 
