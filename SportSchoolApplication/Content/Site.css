@@ -27,3 +27,7 @@ textarea {
     display: none !important;
 }
 
+.photo {
+    max-width: 1100px;
+}
+

@@ -10,33 +10,33 @@
 <body>
     <div class="container">
 
-        @for (int i = 0; i <= Massiv.Count/3; i++)
+        @for (int i = 0; i < (Model.Count() < 3 ? 1 : Model.Count() / 3) + (Model.Count() % 3 == 0 ? 0 : 1); i++)
         {
         <div class="row">
-            @if(i < Massiv.Count)
+            @if(i*3 < Massiv.Count)
             {
             <div class="col-md-4 mb-2">
-                <a href="~/Home/Photos/@i">
-                    <h2>@Massiv[i].Name</h2>
-                    <img src="@Massiv[i].PhotoPath" width="300" height="300" />
+                <a href="~/Home/Photos/@(i*3)">
+                    <h2>@Massiv[i*3].Name</h2>
+                    <img src="@Massiv[i*3].PhotoPath" width="300" height="300" />
                 </a>
             </div>
             }
-            @if(i+1 < Massiv.Count)
+            @if(i*3+1 < Massiv.Count)
             {
             <div class="col-md-4 mb-2">
-                <a href="~/Home/Photos/@(i+1)">
-                    <h2>@Massiv[i+1].Name</h2>
-                    <img src="@Massiv[i+1].PhotoPath" width="300" height="300" />
+                <a href="~/Home/Photos/@(i*3+1)">
+                    <h2>@Massiv[i*3+1].Name</h2>
+                    <img src="@Massiv[i*3+1].PhotoPath" width="300" height="300" />
                 </a>
             </div>
             }
-            @if(i+2 < Massiv.Count)
+            @if(i*3+2 < Massiv.Count)
             {
             <div class="col-md-4 mb-2">
-                <a href="~/Home/Photos/@(i+2)">
-                    <h2>@Massiv[i+2].Name</h2>
-                    <img src="@Massiv[i+2].PhotoPath" width="300" height="300" />
+                <a href="~/Home/Photos/@(i*3+2)">
+                    <h2>@Massiv[i*3+2].Name</h2>
+                    <img src="@Massiv[i*3+2].PhotoPath" width="300" height="300" />
                 </a>
             </div>
             }
